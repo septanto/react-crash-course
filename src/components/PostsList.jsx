@@ -1,14 +1,22 @@
+import Modal from "./Modal";
 import NewPost from "./NewPost";
 import Post from "./Post";
 import classes from './PostsList.module.css'
 
-function PostsList() {
+function PostsList({ isPosting, onStopPosting }) {
+
     return (
         <>
-            <NewPost />
+            {isPosting && (
+                <Modal onClose={onStopPosting}>
+                    <NewPost
+                        onCancel={onStopPosting}
+                    />
+                </Modal>
+            )}
+
             <ul className={classes.posts}>
-                <Post author="Siprianus" body="React.js is awesome" />
-                <Post author="Nugroho" body="Shiba Inu is awesome" />
+                <Post />
             </ul>
         </>
     )
